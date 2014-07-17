@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1.
+        Liste d'éditeurs
+    ul
+        div
+            table
+                thead
+                    tr
+                        th Code permanent
+                        th Nom
+                        th Prénom
+                        th Date naissance
+                        th Lien
+                tbody
+                     for unEtudiant in etudiants
+                         tr
+                             td #{unEtudiant.codePermanent}
+                             td #{unEtudiant.nom}
+                             td #{unEtudiant.prenom}
+                             td #{unEtudiant.dateNaissance}
+                             td: a(href="dossiers/#{unEtudiant.codePermanent}") lien
