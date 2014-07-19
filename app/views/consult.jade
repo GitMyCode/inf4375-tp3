@@ -1,0 +1,52 @@
+
+extends layout
+block content
+
+
+    div.nav
+        h1 dossier
+        span: a(href="#") Modifier
+
+        div
+            #info-dossier
+                table
+                    thead
+                        tr
+                            th Nom
+                            th Prénom
+                            th Code Permanent
+                            th Sexe
+                            th Date naissance
+                    tbody
+                        tr
+                            td#nom
+                            td#prenom
+                            td#codePermanent
+                            td#sexe
+                            td#dateNaissance
+
+
+    br
+    div#info-inscriptions
+        h3 Inscriptions
+        table
+            thead
+                tr
+                    th Sigle
+                    th Groupe
+                    th Session
+                    th Note Finale
+            tbody
+    br
+    div#info-coursReussis
+        h3 Cours Réussi
+        ul
+
+
+
+
+    block scripts
+        script(src='/javascripts/consult.js')
+
+
+

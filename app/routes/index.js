@@ -22,8 +22,8 @@ router.get('/dossiers', function (req, res) {
     });
 });
 
-router.get('/dossier/:cp', function(req, res){
-    res.render('dossier');
+router.get('/consult', function(req, res){
+    res.render('consult');
 });
 
 
@@ -64,8 +64,7 @@ router.get('/dossiers/:cp', function (req, res) {
                 "codePermanent": cp
             })
             .toArray(function (err, items) {
-                res.render('dossier',{dossier: items[0]})
-                //res.json(items[0]); // codePermanent est unique (supposé)
+                res.json(items[0]); // codePermanent est unique (supposé)
             });
     });
 });

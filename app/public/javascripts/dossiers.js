@@ -48,6 +48,7 @@ function addDossier(e){
 */
     //newDossier = JSON.stringify(newDossier);
 
+
     $.ajax({
         type: "POST",
         data: newDossier,
