@@ -2,4 +2,40 @@
 extends layout
 block content
 
-    h1 dossier #{dossier.nom}
+
+    div.nav
+        h1 dossier
+        span: a(href="#") Modifier
+
+    ul
+        div
+            #info-dossier
+                table
+                    thead
+                        tr
+                            th Nom
+                            th Prénom
+                            th Code Permanent
+                            th Sexe
+                            th Date naissance
+                    tbody
+                        td
+
+
+
+        if (typeof(dossier.inscriptions) !== "undefined")
+            div#info-inscriptions
+                each uneInscription in dossier.inscriptions
+                    ul
+                        li uneInscription.sigle
+                        li uneInscription.groupe
+                        li uneInscription.session
+                        li noteFinale
+
+
+
+    block scripts
+        script(src='/javascripts/dossier.js')
+
+
+

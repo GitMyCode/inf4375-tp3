@@ -6,18 +6,22 @@ module.exports.schemaDossierPOST = {
     "properties": {
         "codePermanent": {
             "type": "string",
+            "minLength" : 12,
             "required": true
         },
         "dateNaissance": {
             "type": "string",
+            "minLength" : 10 ,
             "required": true
         },
         "nom": {
             "type": "string",
+            "minLength" : 1,
             "required": true
         },
         "prenom": {
             "type": "string",
+            "minLength" : 1,
             "required": true
         },
         "sexe": {
@@ -26,7 +30,7 @@ module.exports.schemaDossierPOST = {
         },
         "inscriptions": {
             "type": "array",
-            "required": true,
+            "required": false,
             "items": {
                 "type": "object",
                 "required": false,
@@ -54,7 +58,7 @@ module.exports.schemaDossierPOST = {
         },
         "coursReussis": {
             "type": "array",
-            "required": true,
+            "required": false,
             "items": {
                 "type": "string"
             }

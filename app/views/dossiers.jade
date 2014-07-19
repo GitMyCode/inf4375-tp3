@@ -1,4 +1,33 @@
 extends layout
 
 block content
-  h1 allo
+  #message(style='display:none')
+    span
+  #wrapper
+    h3 Ajouter dossier
+    #newForm
+        fieldset
+            legend Nouveau dossier
+            form
+                label Code permanent:
+                input#codePermanent(type='text', placeholder='Code Permanent')
+                br
+                label Nom:
+                input#nom(type='text', placeholder='Nom')
+                br
+                label Prénom:
+                input#prenom(type='text', placeholder='Prénom')
+                br
+                label Date naissance
+                input#dateNaissance(type='text', placeholder='Date Naissance')
+                br
+                label Sexe:
+                input#sexe(type='radio', name='sexeGroupe', value='1', checked=true)
+                | Homme
+                input#sexe(type='radio', name='sexeGroupe', value='2', checked=false)
+                | Femme
+                br
+                button#addButton Ajouter
+    block scripts
+        script(src='/javascripts/dossiers.js')
+

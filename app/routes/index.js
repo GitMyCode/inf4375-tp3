@@ -15,12 +15,24 @@ var Schemas = require('../support/schemas');
 
 
 
+
+router.get('/dossiers', function (req, res) {
+    res.render('dossiers', {
+        title: 'Express'
+    });
+});
+
+router.get('/dossier/:cp', function(req, res){
+    res.render('dossier');
+});
+
+
 /* GET home page. */
 router.get('/', function (req, res) {
 
 
     mongoDbConnection(function (dbConnection) {
-        dbConnection.collection("dossiers").find().toArray(function (err, items) {
+        dbConnection.collection("dossiers").find().sort({codePermanent: 1}).toArray(function (err, items) {
             res.render('index', {
                 "etudiants": items
             });
@@ -52,16 +64,12 @@ router.get('/dossiers/:cp', function (req, res) {
                 "codePermanent": cp
             })
             .toArray(function (err, items) {
-                res.json(items[0]); // codePermanent est unique (supposé)
+                res.render('dossier',{dossier: items[0]})
+                //res.json(items[0]); // codePermanent est unique (supposé)
             });
     });
 });
 
-router.get('/dossiers', function (req, res) {
-    res.render('dossiers', {
-        title: 'Express'
-    });
-});
 
 /* POST /dossier
 Description : Reçoit du client un dossier complet d'étudiant, en format JSON, et crée le dossier. Le
