@@ -70,6 +70,9 @@ $("#suppButton").on("click", function(e){
     $.ajax({
         type: "DELETE",
         url: "dossiers/"+dossier.codePermanent,
+        success: function (xhr, status){
+            window.location.href = "/";
+        },
         complete: function(xhr, status){
             console.log("deleted");
         }

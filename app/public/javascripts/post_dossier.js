@@ -12,12 +12,11 @@ function addDossier(e){
     var prenom = $("#prenom").val();
     var dateNaissance = $("#dateNaissance").val();
     var sexe = $("#sexe:checked").val();
-
     newDossier = {
         "nom" : nom,
         "prenom" : prenom,
         "codePermanent" : codePermanent,
-        "sexe" : sexe,
+        "sexe" : ""+sexe,
         "dateNaissance" : dateNaissance,
         "inscriptions" : [
         ],
@@ -43,12 +42,13 @@ function addDossier(e){
         url: '/dossiers',
        // dataType: "json",
         success: function (data) {
+            window.location.href = "consult?cp="+codePermanent;
         },
         error: function (xhr, status) {
 
         },
         complete: function (xhr, status) {
-            window.location.href = "consult?cp="+codePermanent;
+
         }
     });
 }
