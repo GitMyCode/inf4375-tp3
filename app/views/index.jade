@@ -1,26 +1,28 @@
 extends layout
 
 block content
-    div.nav
+    .containter
+        div.row.col-md-offset-1
+            div.nav.row
+                h1.col-md-8 Liste d'éditeurs
+                h2.col-4: a.btn.btn-info#edit_link(href="new") Nouveau dossier
 
-        h1.
-            Liste d'éditeurs
-        span: a(href="new") Nouveau dossier
-    ul
-        div
-            table
-                thead
-                    tr
-                        th Code permanent
-                        th Nom
-                        th Prénom
-                        th Date naissance
-                        th Lien
-                tbody
-                     for unEtudiant in etudiants
-                         tr
-                             td #{unEtudiant.codePermanent}
-                             td #{unEtudiant.nom}
-                             td #{unEtudiant.prenom}
-                             td #{unEtudiant.dateNaissance}
-                             td: a(href="consult?cp=#{unEtudiant.codePermanent}") lien
+            hr.devider.devider-dotted
+            .row
+                div
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Code permanent
+                                th Nom
+                                th Prénom
+                                th Date naissance
+                                th Lien
+                        tbody
+                             for unEtudiant in etudiants
+                                 tr
+                                     td #{unEtudiant.codePermanent}
+                                     td #{unEtudiant.nom}
+                                     td #{unEtudiant.prenom}
+                                     td #{unEtudiant.dateNaissance}
+                                     td: a(href="consult?cp=#{unEtudiant.codePermanent}") lien

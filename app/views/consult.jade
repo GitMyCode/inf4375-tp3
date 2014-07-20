@@ -6,41 +6,51 @@ block content
         div.nav.row
             h1.col-md-8 Dossier
             h2.col-4: a.btn.btn-info#edit_link(href="edit/") Modifier
+        hr.devider.devider-dotted
 
         div.row
-            #info-dossier
-                table.table
-                    thead
-                        tr
-                            th Nom
-                            th Prénom
-                            th Code Permanent
-                            th Sexe
-                            th Date naissance
-                    tbody
-                        tr
-                            td#nom
-                            td#prenom
-                            td#codePermanent
-                            td#sexe
-                            td#dateNaissance
+            div.panel.panel-primary#info-dossier
+                    .panel-heading
+                        h3.panel-title Information dossier
+                    .panel-body
+                        table.table
+                            thead
+                                tr
+                                    th Nom
+                                    th Prénom
+                                    th Code Permanent
+                                    th Sexe
+                                    th Date naissance
+                            tbody
+                                tr
+                                    td#nom
+                                    td#prenom
+                                    td#codePermanent
+                                    td#sexe
+                                    td#dateNaissance
 
 
+        div.row
+
+            div.panel.panel-success#info-inscriptions
+                .panel-heading
+                    h3.panel-title Inscriptions
+                .panel-body
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Sigle
+                                th Groupe
+                                th Session
+                                th Note Finale
+                        tbody
             br
-            div#info-inscriptions
-                h3 Inscriptions
-                table.table.table-striped
-                    thead
-                        tr
-                            th Sigle
-                            th Groupe
-                            th Session
-                            th Note Finale
-                    tbody
-            br
-            div#info-coursReussis
-                h3 Cours Réussi
-                ul
+
+            div.panel.panel-default#info-coursReussis
+                .panel-heading
+                    h3.panel-title Cours Réussi
+                .panel-body
+                    ul
 
 
 

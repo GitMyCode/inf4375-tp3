@@ -3,31 +3,49 @@ extends layout
 block content
   #message(style='display:none')
     span
-  #wrapper
+  .container
     h1 Ajouter dossier
+    hr.devider.devider-dotted
     #newForm
         fieldset
-            legend information dossier
-            form.form-horizontal(role="form")
-                label Code permanent:
-                input#codePermanent(type='text', placeholder='Code Permanent')
-                br
-                label Nom:
-                input#nom(type='text', placeholder='Nom')
-                br
-                label Prénom:
-                input#prenom(type='text', placeholder='Prénom')
-                br
-                label Date naissance
-                input#dateNaissance(type='text', placeholder='Date Naissance')
-                br
-                label Sexe:
-                input#sexe(type='radio', name='sexeGroupe', value='1', checked=true)
-                | Homme
-                input#sexe(type='radio', name='sexeGroupe', value='2', checked=false)
-                | Femme
-                br
-                button#addButton Ajouter
+            div.panel.panel-green.margin-bottom-40
+            div.panel-body
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-md-2.control-label Code permanent:
+                        div.col-md-6
+                            input.form-control#codePermanent(type='text', name="cp", placeholder='Code Permanent')
+                    div.form-group
+                        label.col-md-2.control-label Nom:
+                        div.col-md-6
+                            input.form-control#nom(type='text', placeholder='Nom')
+                    div.form-group
+                        label.col-md-2.control-label Prénom:
+                        div.col-md-6
+                            input.form-control#prenom(type='text', placeholder='Prénom')
+                    div.form-group
+                        label.col-md-2.control-label Date naissance
+                        div.col-md-6
+                            input.form-control#dateNaissance(type='text', placeholder='Date Naissance')
+
+
+                    label.col-md-2.control-label Sexe:
+                    div.col-md-10
+                        div.radio
+                            label
+                                input#sexe(type='radio', name='sexeGroupe', value='1', checked=true)
+                                | Homme
+                        div.radio
+                            label
+                                input#sexe(type='radio', name='sexeGroupe', value='2', checked=false)
+                                | Femme
+                    div.row
+                        div.col-md-offset-5
+                            div.col-md-2
+                                button.btn.btn-success(type="button")#addButton Ajouter
+
+
+
     block scripts
         script(src='/javascripts/post_dossier.js')
 

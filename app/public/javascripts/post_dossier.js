@@ -43,15 +43,12 @@ function addDossier(e){
         url: '/dossiers',
        // dataType: "json",
         success: function (data) {
-            alert("ici");
         },
         error: function (xhr, status) {
 
         },
         complete: function (xhr, status) {
-            alert("fini");
-            window.location.href = "dossiers/"+codePermanent;
-           console.log("groupe supprimé");
+            window.location.href = "consult?cp="+codePermanent;
         }
     });
 }

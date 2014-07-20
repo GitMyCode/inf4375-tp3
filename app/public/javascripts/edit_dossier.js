@@ -32,8 +32,8 @@ function fill_form(){
 }
 
 
-$("#editButton").on("click", function(e){
-    e.preventDefault();
+function sendChange(){
+    var good_or_bad = false;
     var put_dossier = {
         "nom": $("#nom").val(),
         "prenom": $("#prenom").val(),
@@ -47,13 +47,22 @@ $("#editButton").on("click", function(e){
         data: JSON.stringify(put_dossier),
         url:"dossiers/"+dossier.codePermanent,
         contentType: "application/json; charset=UTF-8",
+        error: function(xhr ,status){
+            good_or_bad = false;
+        },
         complete: function(xhr, status){
+            if (status == 'error'){
+                good_or_bad = false
+            }
+            if(status == "success"){
+                return good_or_bad = true;
+            }
             console.log(status);
         }
 
     });
 
-});
+}
 
 $("#suppButton").on("click", function(e){
     e.preventDefault();
@@ -69,3 +78,17 @@ $("#suppButton").on("click", function(e){
 
 });
 
+
+$("input#nom").on('change input', function(){
+    var nom = $("#nom").val();
+    if(verifierNomOuPrenom(nom)){
+        showMessage("success", "success");
+    }else{
+        showMessage("erreur", "danger");
+    }
+
+});
+
+function verifierNomOuPrenom(nomOuPrenom){
+    return /^[a-zA-Z]+(\s*[a-zA-Z]+)*$/.test(nomOuPrenom);
+}
