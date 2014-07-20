@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  #message(style='display:none')
+    span
+  .container
+    h1 Modifier dossier
+    #newForm
+        fieldset
+            legend Details du dossier
+            div.panel.panel-green.margin-bottom-40
+            div.panel-body
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-md-2.control-label Code permanent:
+                        div.col-md-6
+                            input.form-control#codePermanent(type='text', name="cp", placeholder='Code Permanent')
+                    div.form-group
+                        label Nom:
+                        input#nom(type='text', placeholder='Nom')
+                        br
+                        label Prénom:
+                        input#prenom(type='text', placeholder='Prénom')
+                        br
+                        label Date naissance
+                        input#dateNaissance(type='text', placeholder='Date Naissance')
+                        br
+                        label Sexe:
+                        input#sexe(type='radio', name='sexeGroupe', value='1', checked=true)
+                        | Homme
+                        input#sexe(type='radio', name='sexeGroupe', value='2', checked=false)
+                        | Femme
+                        br
+                        button#editButton Modifier
+                        button#suppButton Supprimer
+
+    block scripts
+        script(src='/javascripts/edit_dossier.js')
+

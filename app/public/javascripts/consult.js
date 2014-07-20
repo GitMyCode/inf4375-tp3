@@ -22,6 +22,9 @@ function get_dossier() {
 
         show_data();
 
+        //update the edit link
+        $("a#edit_link").attr("href","edit?cp="+dossier.codePermanent);
+
     });
 
     return dossier;
@@ -38,37 +41,31 @@ function show_data(){
     $("#sexe").text(dossier.sexe);
     $("#dateNaissance").text(dossier.dateNaissance);
 
-    var inscriptionContent = "";
-    $.each(dossier.inscriptions, function(){
-        inscriptionContent += '<tr>';
-        inscriptionContent += '<td>' + this.sigle + '</td>';
-        inscriptionContent += '<td>' + this.groupe + '</td>';
-        inscriptionContent += '<td>' + this.session + '</td>';
-        inscriptionContent += '<td>' + this.noteFinale + '</td>';
-        inscriptionContent += '</tr>';
-    });
-    $("#info-inscriptions tbody").html(inscriptionContent);
+    if (typeof (dossier.inscriptions) != "undefined") {
 
-    var coursContent = "";
-    $.each(dossier.coursReussis, function(){
-        coursContent += '<li>' + this + '</li>';
-    });
-    $("#info-coursReussis ul").html(coursContent);
+        var inscriptionContent = "";
+        $.each(dossier.inscriptions, function () {
+            inscriptionContent += '<tr>';
+            inscriptionContent += '<td>' + this.sigle + '</td>';
+            inscriptionContent += '<td>' + this.groupe + '</td>';
+            inscriptionContent += '<td>' + this.session + '</td>';
+            inscriptionContent += '<td>' + this.noteFinale + '</td>';
+            inscriptionContent += '</tr>';
+        });
+        $("#info-inscriptions tbody").html(inscriptionContent);
 
-}
-
-
-
-
-/*
-Function taken from  http://www.sitepoint.com/url-parameters-jquery/
-*/
-$.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
     }
-    else{
-       return results[1] || 0;
+
+    if (typeof (dossier.coursReussis) != "undefined") {
+
+        var coursContent = "";
+        $.each(dossier.coursReussis, function () {
+            coursContent += '<li>' + this + '</li>';
+        });
+        $("#info-coursReussis ul").html(coursContent);
+
     }
-}
+    }
+
+
+

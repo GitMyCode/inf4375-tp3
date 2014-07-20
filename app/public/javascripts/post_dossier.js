@@ -36,18 +36,6 @@ function addDossier(e){
 
     ]
 }
-/*
-    newDossier = {};
-    newDossier['codePermanent'] = codePermanent;
-    newDossier['nom'] = nom;
-    newDossier['prenom'] = prenom;
-    newDossier['dateNaissance'] = dateNaissance;
-    newDossier['sexe'] = sexe;
-    newDossier['inscriptions'] = [];
-    newDossier['coursReussis'] = [];
-*/
-    //newDossier = JSON.stringify(newDossier);
-
 
     $.ajax({
         type: "POST",

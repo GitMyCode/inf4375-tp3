@@ -2,14 +2,14 @@
 extends layout
 block content
 
+    .container
+        div.nav.row
+            h1.col-md-8 Dossier
+            h2.col-4: a.btn.btn-info#edit_link(href="edit/") Modifier
 
-    div.nav
-        h1 dossier
-        span: a(href="#") Modifier
-
-        div
+        div.row
             #info-dossier
-                table
+                table.table
                     thead
                         tr
                             th Nom
@@ -26,21 +26,21 @@ block content
                             td#dateNaissance
 
 
-    br
-    div#info-inscriptions
-        h3 Inscriptions
-        table
-            thead
-                tr
-                    th Sigle
-                    th Groupe
-                    th Session
-                    th Note Finale
-            tbody
-    br
-    div#info-coursReussis
-        h3 Cours Réussi
-        ul
+            br
+            div#info-inscriptions
+                h3 Inscriptions
+                table.table.table-striped
+                    thead
+                        tr
+                            th Sigle
+                            th Groupe
+                            th Session
+                            th Note Finale
+                    tbody
+            br
+            div#info-coursReussis
+                h3 Cours Réussi
+                ul
 
 
 

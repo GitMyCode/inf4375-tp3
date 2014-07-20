@@ -4,11 +4,11 @@ block content
   #message(style='display:none')
     span
   #wrapper
-    h3 Ajouter dossier
+    h1 Ajouter dossier
     #newForm
         fieldset
-            legend Nouveau dossier
-            form
+            legend information dossier
+            form.form-horizontal(role="form")
                 label Code permanent:
                 input#codePermanent(type='text', placeholder='Code Permanent')
                 br
@@ -29,5 +29,5 @@ block content
                 br
                 button#addButton Ajouter
     block scripts
-        script(src='/javascripts/dossiers.js')
+        script(src='/javascripts/post_dossier.js')
 

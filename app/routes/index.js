@@ -15,15 +15,16 @@ var Schemas = require('../support/schemas');
 
 
 
-
-router.get('/dossiers', function (req, res) {
-    res.render('dossiers', {
-        title: 'Express'
-    });
+router.get('/consult', function (req, res) {
+    res.render('consult');
 });
 
-router.get('/consult', function(req, res){
-    res.render('consult');
+router.get('/edit', function (req, res) {
+    res.render('edit_dossier');
+});
+
+router.get('/new', function (req, res) {
+    res.render('post_dossier')
 });
 
 
@@ -32,7 +33,9 @@ router.get('/', function (req, res) {
 
 
     mongoDbConnection(function (dbConnection) {
-        dbConnection.collection("dossiers").find().sort({codePermanent: 1}).toArray(function (err, items) {
+        dbConnection.collection("dossiers").find().sort({
+            codePermanent: 1
+        }).toArray(function (err, items) {
             res.render('index', {
                 "etudiants": items
             });
@@ -184,8 +187,6 @@ router.delete('/dossiers/:cp', function (req, res) {
                     if (err) {
                         console.log(err);
                     } else {
-                        //console.log(result[0].inscriptions[0]);
-                        console.log(checkSuccededCours(result[0]));
                         if (!checkIfSuccededCours(result[0])) { // check
                             collection.remove({
                                     'codePermanent': cpDossierToDelete
@@ -454,7 +455,7 @@ module.exports = router;
 /* private methode */
 var checkIfSuccededCours = function (dossier) {
 
-    if (dossier.coursReussis.length > 0) {
+    if (typeof (dossier.coursReussis) != "undefined" && dossier.coursReussis.length > 0) {
         return true;
     } else {
         return false;
@@ -463,7 +464,7 @@ var checkIfSuccededCours = function (dossier) {
 
 var checkIfInscriptionCours = function (groupe) {
 
-    if (groupe.listeEtudiant.length > 0) {
+    if (typeof (dossier.listeEtudiant) != "undefined" && groupe.listeEtudiant.length > 0) {
         return true;
     } else {
         return false;
