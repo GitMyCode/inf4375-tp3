@@ -58,21 +58,35 @@ function sendChange(message){
     });
 
 }
-
-$("#suppButton").on("click", function(e){
+test = '';
+$("#confirmSupp").on("click", function(e){
     e.preventDefault();
 
     $.ajax({
         type: "DELETE",
         url: "dossiers/"+dossier.codePermanent,
+        error: function (xhr, status){
+            console.log(status);
+            if(xhr.status== "400"){
+                var response = $.parseJSON(xhr.responseText);
+                showMessage(response.error ,"danger");
+            }else{
+                showMessage("Un probleme c'est produit lors de la sauvegarde du dossier","danger");
+            }
+        },
         success: function (xhr, status){
+
+            showMessage("La suppression du dossier est un succes", "success");
             window.location.href = "/";
         },
         complete: function(xhr, status){
+            test = xhr;
             console.log("deleted");
         }
 
     });
+
+    $("#warning-modal").modal("hide");
 
 });
 

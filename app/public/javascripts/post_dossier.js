@@ -23,18 +23,7 @@ function addDossier(e){
         "coursReussis" : [
         ]
     }
-    var unDossier2 = {
-    "nom" : "OUI",
-    "prenom" : "test_prenom",
-    "codePermanent" : "BOUM15078700",
-    "sexe" : "2",
-    "dateNaissance" : "1987-07-15",
-    "inscriptions" : [
-    ],
-    "coursReussis" : [
 
-    ]
-}
 
     $.ajax({
         type: "POST",
@@ -43,8 +32,10 @@ function addDossier(e){
        // dataType: "json",
         success: function (data) {
             window.location.href = "consult?cp="+codePermanent;
+            showMessage("Ajout de dossier réussi", "success");
         },
         error: function (xhr, status) {
+            showMessage("Il y a eu un probleme lors de la sauvegarde du dossier", "danger");
 
         },
         complete: function (xhr, status) {

@@ -1,8 +1,11 @@
 INF4375_TP2
 ===========
 
-tp2 de inf4375
+tp3 de inf4375
 
+# Pour construit la base de données
+cd migration
+node migration.js
 
 
 ##Utilisation des service
@@ -10,14 +13,14 @@ tp2 de inf4375
 1 – Consultation d'un dossier d'étudiant
 ----
 Description : Envoie au client le dossier complet de l'étudiant, en format JSON.
-Méthode : GET   
-URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)     
+Méthode : GET
+URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)
 
-**Entré**  
-params ->   :cp  (codePermanent)    
+**Entré**
+params ->   :cp  (codePermanent)
 body ->
 
-**Sortie**  
+**Sortie**
 Json object du dossier
  succes -> :msg
  error -> :error
@@ -35,7 +38,7 @@ Méthode : POST
 URL : /dossiers
 
 
-**Entré**   
+**Entré**
 --Un dossier en json dans le body qui respect le format suivant
 
 body-> json
@@ -88,10 +91,10 @@ type": "object",
 }
 ```
 
-**Sortie**  
+**Sortie**
 success message
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error
 
 
 
@@ -103,16 +106,16 @@ Méthode : PUT
 URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)
 
 
-**Entré**   
-params ->   :cp  (codePermanent)    
-body -> 
+**Entré**
+params ->   :cp  (codePermanent)
+body ->
 ```sh
 {   //DOIT respecter ce schema
     "type": "object",
     "required": true,
     "properties": {
         "codePermanent": {"type": "string", "required": false },
-        "dateNaissance": {"type": "string", "required": false },  
+        "dateNaissance": {"type": "string", "required": false },
         "nom": {"type": "string", "required": false },
         "prenom": {"type": "string", "required": false },
         "sexe": {"type": "string", "required": false },
@@ -123,9 +126,9 @@ body ->
                 "type": "object",
                 "required": false,
                 "properties": {
-                    "group": {"type": "string", "required": true },   
-                    "noteFinale": {"type": "string", "required": true },   
-                    "session": {"type": "string", "required": true },   
+                    "group": {"type": "string", "required": true },
+                    "noteFinale": {"type": "string", "required": true },
+                    "session": {"type": "string", "required": true },
                     "sigle": {"type": "string", "required": true } }
             }
 
@@ -142,11 +145,11 @@ body ->
     additionalProperties: false
 }
 ```
-**Sortie**  
+**Sortie**
 success message
-succes -> :msg      
- error -> :error    
- 
+succes -> :msg
+ error -> :error
+
 4 – Suppression d'un dossier d'étudiant
 ---
 Description : Supprime le dossier de l'étudiant. Il est impossible de supprimer un dossier si
@@ -155,13 +158,13 @@ Méthode : DELETE
 URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)
 
 
-**Entré**   
-params ->   :cp  (codePermanent)    
-body ->     
-**Sortie**     
+**Entré**
+params ->   :cp  (codePermanent)
+body ->
+**Sortie**
 success message
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error
 
 ---------------------------------------------------------------------------
 
@@ -174,13 +177,13 @@ Méthode : GET
 URL : /groupes/:oid (où oid est l'ObjectId du groupe)
 
 
-**Entré**  
-params ->   :oid  (object id)   
-body ->     
-**Sortie**     
+**Entré**
+params ->   :oid  (object id)
+body ->
+**Sortie**
 Json object du groupe
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error
 
 6 – Ajout d'un groupe-cours
 ---
@@ -192,9 +195,9 @@ Méthode : POST
 URL : /groupes
 
 
-**Entré**  
-params ->   
-body -> 
+**Entré**
+params ->
+body ->
 ```sh
 {   //DOIT respecter ce schema
     "type": "object",
@@ -252,10 +255,10 @@ body ->
     additionalProperties: false
 }
 ```
-**Sortie**   
+**Sortie**
 Success message
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error
 
 
 7 – Modification d'un groupe-cours
@@ -267,9 +270,9 @@ Méthode : PUT
 URL : /groupes/:oid (où oid est l'ObjectId du groupe)
 
 
-**Entré**         
-params ->   :oid  (object id)   
-body ->     
+**Entré**
+params ->   :oid  (object id)
+body ->
 ```sh
 { //Doit respecter ce schema
     "type": "object",
@@ -327,10 +330,10 @@ body ->
     additionalProperties: false
 }
 ```
-**Sortie**    
+**Sortie**
 Success message
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error
 
 
 8 – Suppression d'un groupe-cours
@@ -341,10 +344,10 @@ Méthode : DELETE
 URL : /groupes/:oid (où oid est l'ObjectId du groupe)
 
 
-**Entré**     
-params ->   :oid  (object id)       
-body ->     
-**Sortie**    
+**Entré**
+params ->   :oid  (object id)
+body ->
+**Sortie**
 Success message
-succes -> :msg      
- error -> :error        
+succes -> :msg
+ error -> :error

@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 
@@ -20,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(flash());
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
@@ -54,5 +55,18 @@ app.use(function(err, req, res, next) {
     });
 });
 
+app.all('/', function(req, res){
+  req.flash('test', 'it worked');
+  res.redirect('/test')
+});
+app.all('/test', function(req, res){
+  res.send(JSON.stringify(req.flash('test')));
+});
+
+app.use(function( req, res, next){
+    res.locals.success_messages = req.flash("success");
+    res.locals.error_messages = req.flash("error");
+    next();
+});
 
 module.exports = app;

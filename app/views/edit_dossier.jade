@@ -42,8 +42,25 @@ block content
                     div.row
                         div.col-md-offset-5
                             div.col-md-2
-                                button.btn.btn-default(type="button")#suppButton Supprimer
+                                button.btn.btn-danger(type="button" data-toggle="modal" data-target="#warning-modal")#suppButton Supprimer
+                                div.popover.fade.top.in(style=" top:-44px; left: 74px; display: block;")
 
-    block scripts
-        script(src='/javascripts/edit_dossier.js')
+            div.modal.fade#warning-modal
+                div.modal-dialog
+                    .modal-content
+                        .modal-header
+                            button.close(type='button' data-dismiss="modal") Close
+                                span(aria-hidden='true') &times;
+                            h4 Attention!
+                        .modal-body
+                            p Etes-vous certain de vouloir supprimer ce dossier?
+                        .modal-footer
+                            button.btn.btn-default(type="button" data-dismiss="modal") Close
+                            button.btn.btn-primary#confirmSupp(type="button") Oui!
+
+
+
+
+   block scripts
+    script(src='/javascripts/edit_dossier.js')
 

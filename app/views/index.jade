@@ -19,10 +19,12 @@ block content
                                 th Date naissance
                                 th Lien
                         tbody
-                             for unEtudiant in etudiants
-                                 tr
-                                     td #{unEtudiant.codePermanent}
-                                     td #{unEtudiant.nom}
-                                     td #{unEtudiant.prenom}
-                                     td #{unEtudiant.dateNaissance}
-                                     td: a(href="consult?cp=#{unEtudiant.codePermanent}") lien
+
+                             if etudiants
+                                 for unEtudiant in etudiants
+                                     tr
+                                         td #{unEtudiant.codePermanent}
+                                         td #{unEtudiant.nom}
+                                         td #{unEtudiant.prenom}
+                                         td #{unEtudiant.dateNaissance}
+                                         td: a(href="consult?cp=#{unEtudiant.codePermanent}") lien
