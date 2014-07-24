@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
     mongoDbConnection(function (dbConnection) {
         dbConnection.collection("dossiers").find().sort({
             codePermanent: 1
-        }, {caseInsensitive: false}).toArray(function (err, items) {
+        }).toArray(function (err, items) {
             res.render('index', {
                 "etudiants": items
             });
