@@ -32,8 +32,7 @@ function fill_form(){
 }
 
 
-function sendChange(){
-    var good_or_bad = false;
+function sendChange(message){
     var put_dossier = {
         "nom": $("#nom").val(),
         "prenom": $("#prenom").val(),
@@ -48,16 +47,12 @@ function sendChange(){
         url:"dossiers/"+dossier.codePermanent,
         contentType: "application/json; charset=UTF-8",
         error: function(xhr ,status){
-            good_or_bad = false;
+            showMessage("Erreur dans la modification des données", "danger");
+        },
+        success: function( xhr, status){
+            showMessage("Champs modifié!", "success");
         },
         complete: function(xhr, status){
-            if (status == 'error'){
-                good_or_bad = false
-            }
-            if(status == "success"){
-                return good_or_bad = true;
-            }
-            console.log(status);
         }
 
     });
@@ -82,16 +77,52 @@ $("#suppButton").on("click", function(e){
 });
 
 
-$("input#nom").on('change input', function(){
-    var nom = $("#nom").val();
-    if(verifierNomOuPrenom(nom)){
-        showMessage("success", "success");
+$("input#codePermanent").on('change input', function(){
+    var codePermanent = $("#codePermanent").val();
+    if(verifierCodePermanent(codePermanent)){
+        sendChange();
     }else{
-        showMessage("erreur", "danger");
+        showMessage("Le format du Code permanent n'est pas valide!", "danger");
     }
 
 });
 
-function verifierNomOuPrenom(nomOuPrenom){
-    return /^[a-zA-Z]+(\s*[a-zA-Z]+)*$/.test(nomOuPrenom);
-}
+
+$("input#nom").on('change input', function(){
+    var nom = $("#nom").val();
+    if(verifierNomOuPrenom(nom)){
+        sendChange();
+    }else{
+        showMessage("Le format du nom est invalide", "danger");
+    }
+
+});
+
+
+$("input#prenom").on('change input', function(){
+    var prenom = $("#prenom").val();
+    if(verifierNomOuPrenom(prenom)){
+        sendChange();
+    }else{
+        showMessage("Le format du prenom est invalide", "danger");
+    }
+
+});
+
+
+$("input#dateNaissance").on('change input', function(){
+    var dateNaissance = $("#dateNaissance").val();
+    if(verifierDate(dateNaissance)){
+        sendChange();
+    }else{
+        showMessage("Format doit correspondre au ISO 8601", "danger");
+    }
+
+});
+
+
+$("input#sexe").on('change input', function(){
+    var sexe = $("#sexe").val();
+    sendChange();
+
+});

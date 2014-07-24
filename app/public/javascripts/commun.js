@@ -1,16 +1,30 @@
+
+/* Function prise de Alexandar */
 function verifierNomOuPrenom(nomOuPrenom) {
     return /^[a-zA-Z]+(\s*[a-zA-Z]+)*$/.test(nomOuPrenom);
 }
 
+/* Function prise de Alexandar */
 function verifierAge(age) {
     return (/^\d{1,3}$/.test(age) &&
         parseInt(age) >= 0 &&
         parseInt(age) <= 130);
 }
 
+/* Function prise de Alexandar */
 function verifierEmail(email) {
     return /^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{0,63}$/.test(email);
 }
+
+function verifierDate(date){
+
+    return /^(\d{4})-0?(\d+)-0?(\d+)/.test(date)
+}
+
+function verifierCodePermanent(codePermanent){
+    return /^[A-Z]{4}[0-9]{8}$/.test(codePermanent);
+}
+
 
 function showMessage(message, typeMessage, temporary) {
     temporary = typeof (temporary) == "undefined" ? true : temporary;
