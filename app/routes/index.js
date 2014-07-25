@@ -44,6 +44,16 @@ router.get('/', function (req, res) {
 
 });
 
+router.get("/getAlldossiers", function(req,res){
+    mongoDbConnection(function (dbConnection) {
+        dbConnection.collection("dossiers").find().sort({
+            codePermanent: 1
+        }).toArray(function (err, items) {
+             res.json(items);
+        });
+    });
+});
+
 
 /* GET Hello World page. */
 router.get('/helloworld', function (req, res) {

@@ -10,7 +10,7 @@ block content
             hr.devider.devider-dotted
             .row
                 div
-                    table.table.table-striped
+                    table.table.table-striped#table_dossiers
                         thead
                             tr
                                 th Code permanent
@@ -20,11 +20,5 @@ block content
                                 th Lien
                         tbody
 
-                             if etudiants
-                                 for unEtudiant in etudiants
-                                     tr
-                                         td #{unEtudiant.codePermanent}
-                                         td #{unEtudiant.nom}
-                                         td #{unEtudiant.prenom}
-                                         td #{unEtudiant.dateNaissance}
-                                         td: a(href="consult?cp=#{unEtudiant.codePermanent}") lien
+     block scripts
+        script(src='/javascripts/index_page.js')
