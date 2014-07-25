@@ -31,8 +31,10 @@ function addDossier(e){
         url: '/dossiers',
        // dataType: "json",
         success: function (data) {
-            window.location.href = "consult?cp="+codePermanent;
-            showMessage("Ajout de dossier réussi", "success");
+            var theMessage = encodeURIComponent("Ajout de dossier réussi");
+            window.location.href = "consult?cp="+codePermanent+
+                                   "&theMessage="+theMessage+
+                                   "&typeMessage=success";
         },
         error: function (xhr, status) {
             showMessage("Il y a eu un probleme lors de la sauvegarde du dossier", "danger");

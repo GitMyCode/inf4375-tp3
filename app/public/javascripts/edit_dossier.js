@@ -75,9 +75,8 @@ $("#confirmSupp").on("click", function(e){
             }
         },
         success: function (xhr, status){
-
-            showMessage("La suppression du dossier est un succes", "success");
-            window.location.href = "/";
+            var theMessage= encodeURIComponent("La suppression du dossier est un succes");
+            window.location.href = "/"+"?theMessage="+theMessage+"&typeMessage=success";
         },
         complete: function(xhr, status){
             test = xhr;

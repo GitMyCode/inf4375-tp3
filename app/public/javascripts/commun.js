@@ -1,4 +1,16 @@
 
+
+$(document).ready(function(){
+    $.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+
+    var typeMessage =  $.urlParam("typeMessage");
+    var theMessage =  $.urlParam("theMessage");
+
+    if(typeMessage){
+        showMessage(decodeURIComponent(theMessage), typeMessage);
+    }
+});
+
 /* Function prise de Alexandar */
 function verifierNomOuPrenom(nomOuPrenom) {
     return /^[a-zA-Z]+(\s*[a-zA-Z]+)*$/.test(nomOuPrenom);
