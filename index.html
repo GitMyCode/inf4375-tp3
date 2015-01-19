@@ -1,0 +1,393 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Inf4375-tp3 by GitMyCode</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/GitMyCode/inf4375-tp3">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/GitMyCode/inf4375-tp3/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/GitMyCode/inf4375-tp3/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Inf4375-tp3</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/GitMyCode">GitMyCode</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="inf4375_tp2" class="anchor" href="#inf4375_tp2" aria-hidden="true"><span class="octicon octicon-link"></span></a>INF4375_TP2</h1>
+
+<p>tp3 de inf4375</p>
+
+<h1>
+<a id="pour-construit-la-base-de-données" class="anchor" href="#pour-construit-la-base-de-donn%C3%A9es" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pour construit la base de données</h1>
+
+<p>cd migration
+node migration.js</p>
+
+<h2>
+<a id="utilisation-des-service" class="anchor" href="#utilisation-des-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Utilisation des service</h2>
+
+<h2>
+<a id="1--consultation-dun-dossier-détudiant" class="anchor" href="#1--consultation-dun-dossier-d%C3%A9tudiant" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 – Consultation d'un dossier d'étudiant</h2>
+
+<p>Description : Envoie au client le dossier complet de l'étudiant, en format JSON.
+Méthode : GET
+URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :cp  (codePermanent)
+body -&gt;</p>
+
+<p><strong>Sortie</strong>
+Json object du dossier
+ succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="2--ajout-dun-dossier-détudiant" class="anchor" href="#2--ajout-dun-dossier-d%C3%A9tudiant" aria-hidden="true"><span class="octicon octicon-link"></span></a>2 – Ajout d'un dossier d'étudiant</h2>
+
+<p>Description : Reçoit du client un dossier complet d'étudiant, en format JSON, et crée le dossier. Le
+document JSON est encodé dans le body de la requête HTTP. La structure de l'objet doit être la
+même que celle stockée dans mongodb, à l'exception de la propriété _id qui ne doit pas être
+présente. Si la structure n'est pas la bonne, la requête est rejetée.
+Méthode : POST
+URL : /dossiers</p>
+
+<p><strong>Entré</strong>
+--Un dossier en json dans le body qui respect le format suivant</p>
+
+<p>body-&gt; json</p>
+
+<div class="highlight highlight-sh"><pre><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>object<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">    <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true,</span>
+<span class="pl-s1">    <span class="pl-pds">"</span></span>properties<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>codePermanent<span class="pl-s1"><span class="pl-pds">"</span>: { <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>dateNaissance<span class="pl-s1"><span class="pl-pds">"</span>: { <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>nom<span class="pl-s1"><span class="pl-pds">"</span>: { <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true  },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>prenom<span class="pl-s1"><span class="pl-pds">"</span>: { <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true   },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>sexe<span class="pl-s1"><span class="pl-pds">"</span>: {<span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true  },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>inscriptions<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>array<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true,</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span>items<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>object<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">                <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: false,</span>
+<span class="pl-s1">                <span class="pl-pds">"</span></span>properties<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                    <span class="pl-pds">"</span></span>group<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true</span>
+<span class="pl-s1">                    },</span>
+<span class="pl-s1">                    <span class="pl-pds">"</span></span>noteFinale<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true</span>
+<span class="pl-s1">                    },</span>
+<span class="pl-s1">                    <span class="pl-pds">"</span></span>session<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true</span>
+<span class="pl-s1">                    },</span>
+<span class="pl-s1">                    <span class="pl-pds">"</span></span>sigle<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">                        <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true</span>
+<span class="pl-s1">                    }</span>
+<span class="pl-s1">                }</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        },</span>
+<span class="pl-s1">        <span class="pl-pds">"</span></span>coursReussis<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>array<span class="pl-s1"><span class="pl-pds">"</span>,</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span>required<span class="pl-s1"><span class="pl-pds">"</span>: true,</span>
+<span class="pl-s1">            <span class="pl-pds">"</span></span>items<span class="pl-s1"><span class="pl-pds">"</span>: {</span>
+<span class="pl-s1">                <span class="pl-pds">"</span></span><span class="pl-s3">type</span><span class="pl-s1"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>string<span class="pl-s1"><span class="pl-pds">"</span></span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    },</span>
+<span class="pl-s1">    additionalProperties: false</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p><strong>Sortie</strong>
+success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="3--modification-dun-dossier-détudiant" class="anchor" href="#3--modification-dun-dossier-d%C3%A9tudiant" aria-hidden="true"><span class="octicon octicon-link"></span></a>3 – Modification d'un dossier d'étudiant</h2>
+
+<p>Description : Reçoit du client l'ensemble des modifications à apporter au dossier, en format JSON,
+et les applique au dossier. Le document JSON est encodé dans le body de la requête HTTP.
+Méthode : PUT
+URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :cp  (codePermanent)
+body -&gt;</p>
+
+<div class="highlight highlight-sh"><pre>{   //DOIT respecter ce schema
+    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+        <span class="pl-s1"><span class="pl-pds">"</span>codePermanent<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span> },
+        <span class="pl-s1"><span class="pl-pds">"</span>dateNaissance<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span> },
+        <span class="pl-s1"><span class="pl-pds">"</span>nom<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span> },
+        <span class="pl-s1"><span class="pl-pds">"</span>prenom<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span> },
+        <span class="pl-s1"><span class="pl-pds">"</span>sexe<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span> },
+        <span class="pl-s1"><span class="pl-pds">"</span>inscriptions<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>array<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+                    <span class="pl-s1"><span class="pl-pds">"</span>group<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span> },
+                    <span class="pl-s1"><span class="pl-pds">"</span>noteFinale<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span> },
+                    <span class="pl-s1"><span class="pl-pds">"</span>session<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span> },
+                    <span class="pl-s1"><span class="pl-pds">"</span>sigle<span class="pl-pds">"</span></span>: {<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span> } }
+            }
+
+
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>coursReussis<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>array<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>
+            }
+        }
+    },
+    additionalProperties: <span class="pl-s3">false</span>
+}</pre></div>
+
+<p><strong>Sortie</strong>
+success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="4--suppression-dun-dossier-détudiant" class="anchor" href="#4--suppression-dun-dossier-d%C3%A9tudiant" aria-hidden="true"><span class="octicon octicon-link"></span></a>4 – Suppression d'un dossier d'étudiant</h2>
+
+<p>Description : Supprime le dossier de l'étudiant. Il est impossible de supprimer un dossier si
+l'étudiant a déjà complété un cours avec succès.
+Méthode : DELETE
+URL : /dossiers/:cp (où cp est le code permanent de l'étudiant)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :cp  (codePermanent)
+body -&gt;
+<strong>Sortie</strong>
+success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<hr>
+
+<h2>
+<a id="5--consultation-dun-groupe-cours" class="anchor" href="#5--consultation-dun-groupe-cours" aria-hidden="true"><span class="octicon octicon-link"></span></a>5 – Consultation d'un groupe-cours</h2>
+
+<p>Description : Envoie au client les données d'un groupe-cours, en format JSON.
+Méthode : GET
+URL : /groupes/:oid (où oid est l'ObjectId du groupe)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :oid  (object id)
+body -&gt;
+<strong>Sortie</strong>
+Json object du groupe
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="6--ajout-dun-groupe-cours" class="anchor" href="#6--ajout-dun-groupe-cours" aria-hidden="true"><span class="octicon octicon-link"></span></a>6 – Ajout d'un groupe-cours</h2>
+
+<p>Description : Reçoit du client les données complètes d'un groupe-cours, en format JSON, et crée le
+groupe-cours. Le document JSON est encodé dans le body de la requête HTTP. La structure de
+l'objet doit être la même que celle stockée dans mongodb, à l'exception de la propriété _id qui ne
+doit pas être présente. Si la structure n'est pas la bonne, la requête est rejetée.
+Méthode : POST
+URL : /groupes</p>
+
+<p><strong>Entré</strong>
+params -&gt;
+body -&gt;</p>
+
+<div class="highlight highlight-sh"><pre>{   //DOIT respecter ce schema
+    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+        <span class="pl-s1"><span class="pl-pds">"</span>sigle<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>nomCours<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>groupe<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>session<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>moyenne<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>float<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>listeEtudiant<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>array<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+                    <span class="pl-s1"><span class="pl-pds">"</span>codePermanent<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>nom<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>prenom<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>noteFinale<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    }
+                }
+            }
+
+
+        }
+    },
+    additionalProperties: <span class="pl-s3">false</span>
+}</pre></div>
+
+<p><strong>Sortie</strong>
+Success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="7--modification-dun-groupe-cours" class="anchor" href="#7--modification-dun-groupe-cours" aria-hidden="true"><span class="octicon octicon-link"></span></a>7 – Modification d'un groupe-cours</h2>
+
+<p>Description : Reçoit du client l'ensemble des modifications à apporter au groupe-cours, en format
+JSON, et les applique au groupe-cours. Le document JSON est encodé dans le body de la requête
+HTTP.
+Méthode : PUT
+URL : /groupes/:oid (où oid est l'ObjectId du groupe)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :oid  (object id)
+body -&gt;</p>
+
+<div class="highlight highlight-sh"><pre>{ //Doit respecter ce schema
+    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+        <span class="pl-s1"><span class="pl-pds">"</span>sigle<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>nomCours<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>groupe<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>session<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>moyenne<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>float<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>listeEtudiant<span class="pl-pds">"</span></span>: {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>array<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">false</span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+                    <span class="pl-s1"><span class="pl-pds">"</span>codePermanent<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>nom<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>prenom<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    },
+                    <span class="pl-s1"><span class="pl-pds">"</span>noteFinale<span class="pl-pds">"</span></span>: {
+                        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span>: <span class="pl-s3">true</span>
+                    }
+                }
+            }
+
+
+        }
+    },
+    additionalProperties: <span class="pl-s3">false</span>
+}</pre></div>
+
+<p><strong>Sortie</strong>
+Success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+
+<h2>
+<a id="8--suppression-dun-groupe-cours" class="anchor" href="#8--suppression-dun-groupe-cours" aria-hidden="true"><span class="octicon octicon-link"></span></a>8 – Suppression d'un groupe-cours</h2>
+
+<p>Description : Supprime le groupe-cours. Il est impossible de supprimer un groupe-cours des
+étudiants y sont inscrits.
+Méthode : DELETE
+URL : /groupes/:oid (où oid est l'ObjectId du groupe)</p>
+
+<p><strong>Entré</strong>
+params -&gt;   :oid  (object id)
+body -&gt;
+<strong>Sortie</strong>
+Success message
+succes -&gt; :msg
+ error -&gt; :error</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
