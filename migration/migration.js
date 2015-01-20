@@ -34,7 +34,7 @@ var mongo = require("mongodb");
 var xpath = require("xpath");
 
 
-var server = new mongo.Server("localhost", 27017, {
+var server = new mongo.Server("localhost", 18240, {
     auto_reconnect: true
 });
 var db = new mongo.Db("BOUM15078700", server, {

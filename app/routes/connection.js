@@ -13,7 +13,7 @@ module.exports = function(callback) {
         return;
     }
 
-    var server = new mongodb.Server("localhost", 27017, {auto_reconnect: true});
+    var server = new mongodb.Server("localhost", 18240, {auto_reconnect: true});
     var db = new mongodb.Db("BOUM15078700", server, {safe: true});
 
     // Vérification de db.openCalled pour éviter d'appeler db.open(...)

@@ -9,6 +9,8 @@ var sugar = require("sugar");
 
 var routes = require('./routes/index');
 
+var http = require("http");
+
 
 var app = express();
 
@@ -69,5 +71,10 @@ app.use(function( req, res, next){
     res.locals.error_messages = req.flash("error");
     next();
 });
+
+http.createServer(app).listen(26050);
+
+
+
 
 module.exports = app;
